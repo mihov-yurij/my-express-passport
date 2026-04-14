@@ -1,17 +1,22 @@
 const express = require('express');
+const path = require('path');
 const routes = require('./routes');
-
 const app = express();
 
-// Мидлвар для парсинга JSON (на случай, если будешь слать POST-запросы с телом)
-app.use(express.json());
+// Настройка путей к шаблонам
+app.set('views', path.join(__dirname, 'views'));
 
-// Подключаем все маршруты из папки routes
+// Настройка PUG (как основной движок)
+app.set('view engine', 'pug');
+
+// Настройка EJS (дополнительный движок)
+app.engine('ejs', require('ejs').renderFile);
+
+// Раздача статики для CSS (папка public в корне)
+app.use(express.static(path.join(__dirname, '../public')));
+
+app.use(express.json());
 app.use('/', routes);
 
-// Обработка несуществующих маршрутов (404)
-app.use((req, res) => {
-    res.status(404).send('Route not found');
-});
-
 module.exports = app;
+

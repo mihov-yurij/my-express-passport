@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title Список користувачів
+    link(rel="stylesheet", href="/css/style.css")
+  body
+    h1 Список користувачів
+    ul
+      if users && users.length > 0
+        each user in users
+          li
+              a(href=`/users/${user.id}`) #{user.name}
+      else
+        p Користувачів не знайдено.
+

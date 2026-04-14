@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <title><%= article.title %></title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <main class="single-article">
+        <a href="/articles" class="back-link">← Назад до списку</a>
+        
+        <article>
+            <h1><%= article.title %></h1>
+            <div class="meta">
+                <span>ID статті: <%= article.id %></span>
+                <% if (article.date) { %>
+                    <time>Дата: <%= new Date(article.date).toLocaleDateString() %></time>
+                <% } %>
+            </div>
+            <div class="content">
+                <p><%= article.content %></p>
+            </div>
+        </article>
+    </main>
+</body>
+</html>
