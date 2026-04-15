@@ -2,12 +2,33 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title><%= article.title %></title>
+    <link rel="icon" type="image/png" href="/favicon-<%= currentTheme %>.png">
     <link rel="stylesheet" href="/css/style.css">
+    
+    <style>
+        body.dark { background-color: #333; color: #fff; }
+        body.light { background-color: #fff; color: #333; }
+    </style>
 </head>
-<body>
+<body class="<%= currentTheme %>">
+
+    <header>
+        
+        <nav>
+            <a href="/change-theme/light">☀️ Світла</a> | 
+            <a href="/change-theme/dark">🌙 Темна</a>
+        </nav>
+        
+    
+        <% if (user) { %>
+            <div style="text-align: right;">Користувач: <strong><%= user.name %></strong></div>
+        <% } %>
+    </header>
+
     <main class="single-article">
-        <a href="/articles" class="back-link">← Назад до списку</a>
+        <a href="/" class="back-link">← Назад до списку</a>
         
         <article>
             <h1><%= article.title %></h1>
@@ -24,3 +45,4 @@
     </main>
 </body>
 </html>
+

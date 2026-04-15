@@ -2,41 +2,36 @@
 <html lang="uk">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Список статей</title>
-    <link rel="stylesheet" href="/css/style.css">
+    <title>Cookies & JWT Project</title>
+    
+    <link rel="icon" type="image/png" href="/favicon-<%= currentTheme %>.png">
+    
+    <link rel="stylesheet" href="/css/style.css"> 
 </head>
-<body>
+<body class="<%= currentTheme %>-theme">
+
     <header>
-        <nav>
-            <a href="/users">Користувачі (Pug)</a> | <strong>Статті (EJS)</strong>
-        </nav>
+
+        <% if (user) { %>
+            <p>Вітаємо, <strong><%= user.name %></strong>! | <a href="/logout">Вийти</a></p>
+        <% } else { %>
+            <form action="/login" method="POST">
+                <input type="text" name="username" placeholder="Ваше ім'я" required>
+                <button type="submit">Увійти (JWT)</button>
+            </form>
+        <% } %>
+
+        <hr>
+
+     
+        <p>Поточна тема: <%= currentTheme %></p>
+        <a href="/change-theme/light">☀️ Світла</a> | 
+        <a href="/change-theme/dark">🌙 Темна</a>
     </header>
 
     <main>
-        <h1>Всі публікації</h1>
-        <div class="articles-container">
-            <% if (typeof articles !== 'undefined' && articles.length > 0) { %>
-                <% articles.forEach(article => { %>
-                    <article class="article-card">
-                        <h3><%= article.title %></h3>
-                        <p>
-                            <% if (article.content.length > 100) { %>
-                                <%= article.content.substring(0, 100) %>...
-                            <% } else { %>
-                                <%= article.content %>
-                            <% } %>
-                        </p>
-                        <a href="/articles/<%= article.id %>" class="btn">Читати далі</a>
-                    </article>
-                <% }); %>
-            <% } else { %>
-                <div class="empty-state">
-                    <p>Статей поки що немає.</p>
-                </div>
-            <% } %>
-        </div>
+        <h1>Головна сторінка</h1>
     </main>
+
 </body>
 </html>
-
