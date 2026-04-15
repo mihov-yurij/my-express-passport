@@ -71,6 +71,11 @@ app.get('/logout', (req, res) => {
 
 app.use('/api', requireAuth, routes);
 
+app.get('/articles', (req, res) => {    
+    res.render('articles', { theme: res.locals.currentTheme }); 
+});
+
+
 app.use((req, res, next) => {
     const error = new Error("Route not found");
     error.status = 404;
