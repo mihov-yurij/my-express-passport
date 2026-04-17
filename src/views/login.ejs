@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Вход в систему</title>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body class="<%= currentTheme %>">
+    <h1>Авторизация</h1>
+    <% if (error && error.length > 0) { %>
+        <div style="color: red;"><%= error %></div>
+    <% } %>
+
+    <form action="/login" method="POST">
+        <div>
+            <label>Email:</label>
+            <input type="email" name="email" required>
+        </div>
+        <div>
+            <label>Пароль:</label>
+            <input type="password" name="password" required>
+        </div>
+        <button type="submit">Войти</button>
+    </form>
+    
+    <p><a href="/">На главную</a></p>
+</body>
+</html>
